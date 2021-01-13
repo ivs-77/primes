@@ -1,5 +1,5 @@
 # Constexpr prime numbers calculator
-Constexpr usage:  
+## Constexpr usage:  
 ```bash
 [user@host primes]$ time g++ -std=c++20 -DMAX_PRIMES=100000 -fconstexpr-ops-limit=100000000000 primes.cpp && time ./a.out>./primes.dat
 
@@ -11,7 +11,7 @@ real	0m0,027s
 user	0m0,007s
 sys	0m0,014s
 ```  
-Runtime usage:  
+## Runtime usage:  
 ```bash
 [user@host primes]$ time g++ -std=c++20 -O2 -DMAX_PRIMES=100000 -DNO_CONSTEXPR_PRIMES primes.cpp && time ./a.out>./primes.dat
 
