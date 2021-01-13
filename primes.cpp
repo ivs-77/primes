@@ -6,6 +6,12 @@
 #define MAX_PRIMES 100
 #endif
 
+#if defined(NO_CONSTEXPR_PRIMES)
+#define CONSTEXPR_PRIMES
+#else
+#define CONSTEXPR_PRIMES constexpr
+#endif
+
 template<size_t N>
 constexpr bool is_prime(const std::array<unsigned, N>& primes, const std::array<unsigned, N>& primes_squares, unsigned next)
 {
@@ -49,7 +55,7 @@ constexpr std::array<unsigned, N> make_primes()
 
 int main()
 {
-    constexpr auto primes = make_primes<MAX_PRIMES>();
+    CONSTEXPR_PRIMES auto primes = make_primes<MAX_PRIMES>();
     for(auto prime_index = 0; prime_index < primes.size(); ++prime_index)
     {
         std::cout << std::setw(10) << primes[prime_index];
