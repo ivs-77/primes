@@ -37,7 +37,7 @@ constexpr void make_prime(std::array<unsigned, N>& primes, std::array<unsigned, 
     {
         next = primes[prime_index - 1] + 2;
         while(!is_prime(primes, primes_squares, next))
-            ++next;
+            next += 2;
     };
     primes[prime_index] = next;
     primes_squares[prime_index] = next * next;
