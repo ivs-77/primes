@@ -13,13 +13,13 @@
 #endif
 
 template<size_t N>
-constexpr bool is_prime(const std::array<unsigned, N>& primes, const std::array<unsigned, N>& primes_squares, unsigned next)
+constexpr bool is_prime(const std::array<unsigned, N>& primes, const std::array<unsigned, N>& primes_squares, const unsigned next)
 {
-    for(auto next_prime_index = 0;
-        primes_squares[next_prime_index] <= next;
-        ++next_prime_index)
+    for(auto prime_index = 0;
+        primes_squares[prime_index] <= next;
+        ++prime_index)
     {
-        if(next % primes[next_prime_index] == 0)
+        if(next % primes[prime_index] == 0)
             return false;
     }
     return true;
@@ -28,7 +28,7 @@ constexpr bool is_prime(const std::array<unsigned, N>& primes, const std::array<
 template<size_t N>
 constexpr void make_prime(std::array<unsigned, N>& primes, std::array<unsigned, N>& primes_squares, size_t prime_index)
 {
-    unsigned next = 0;
+    auto& next = primes[prime_index];
     if(prime_index < 2)
     {
         next = 2 + prime_index;
@@ -39,7 +39,6 @@ constexpr void make_prime(std::array<unsigned, N>& primes, std::array<unsigned, 
         while(!is_prime(primes, primes_squares, next))
             next += 2;
     };
-    primes[prime_index] = next;
     primes_squares[prime_index] = next * next;
 }
 
